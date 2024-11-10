@@ -24,8 +24,12 @@ class PWM_Generator() extends Module {
     val ena = Input(Bool())           // will go high when the design is enabled
   })
   
+  // use all bidirectionals as inputs
   io.uio_out := 0.U
   io.uio_oe := 0.U
+
+  val fprev = RegInit(0.U(6.W))
+  val fnext = RegInit(1.U(6.W))
 
   val pwm_out = RegInit(false.B)
   val pwm_cnt = RegInit(0.U(36.W))
@@ -39,9 +43,16 @@ class PWM_Generator() extends Module {
   pwm_out := pwm_cnt <= pwm_threshold
   when(pwm_cnt === pwm_top) {
     pwm_cnt := 0.U
+
+    fprev := fnext
+    fnext := fnext + fprev
+    when(fnext === 55.U) {
+        fprev := 0.U
+        fnext := 1.U
+    }
   }
 
-  io.uo_out := 0.U(6.W) ## io.ena ## pwm_out
+  io.uo_out := io.ena ## fnext ## pwm_out
 }
 
 object PWM_Generator extends App {
