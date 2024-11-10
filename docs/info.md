@@ -9,12 +9,24 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Explain how your project works
+A programmable PWM generator. The desired frequency and duty cycle is programmed by setting `pwm_top` and `pwm_threshold`. A counter counts from 0 to `pwm_top` (over and over), the pwm signal is high as when the counter is <= `pwm_threshold`. 
+
+`pwm_top` is wired to uio (all of them are used as inputs)
+`pwm_threshold` is wired to ui
+Their encoding is as follows:
+`pwm_top <= uio(7 downto 5) << uio(4 downto 0)
+`pwm_threshold <= ui(7 downto 5) << ui(4 downto 0)`
+
+Resulting frequency of PWM signal is:
+$f_{out} = \frac{f_{in}}{pwm\_top + 1}$
+
+Resulting duty cycle is:
+$f = \frac{pwm\_threshold+1}{pwm\_top+1}$
 
 ## How to test
 
-Explain how to use your project
+Use above formulas to determine value of `pwm_threshold` and `pwm_top`, hard ware them to this value or connect through switches. Probe output on oscilloscope
 
 ## External hardware
 
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+Switches and oscilloscope
