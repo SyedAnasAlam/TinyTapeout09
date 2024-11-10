@@ -13,8 +13,11 @@ A programmable PWM generator. The desired frequency and duty cycle is programmed
 
 `pwm_top` is wired to uio (all of them are used as inputs)
 `pwm_threshold` is wired to ui
-Their encoding is as follows:
-`pwm_top <= uio(7 downto 5) << uio(4 downto 0)
+
+They are encoded as follows
+
+`pwm_top <= uio(7 downto 5) << uio(4 downto 0)`
+
 `pwm_threshold <= ui(7 downto 5) << ui(4 downto 0)`
 
 Resulting frequency of PWM signal is:
@@ -22,6 +25,8 @@ $f_{out} = \frac{f_{in}}{pwm_{top} + 1}$
 
 Resulting duty cycle is:
 $f = \frac{pwm_{threshold}+1}{pwm_{top}+1}$
+
+The goal is to have wide as possible frequency range while still being able to go from 0% to 100% in duty cycle. 
 
 ## How to test
 

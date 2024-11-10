@@ -41,7 +41,7 @@ class PWM_Generator() extends Module {
     pwm_cnt := 0.U
   }
 
-  io.uo_out := 0.U(7.W) ## io.ena ## pwm_out
+  io.uo_out := 0.U(6.W) ## io.ena ## pwm_out
 }
 
 object PWM_Generator extends App {
