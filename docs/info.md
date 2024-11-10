@@ -18,10 +18,10 @@ Their encoding is as follows:
 `pwm_threshold <= ui(7 downto 5) << ui(4 downto 0)`
 
 Resulting frequency of PWM signal is:
-$f_{out} = \frac{f_{in}}{pwm\_top + 1}$
+$f_{out} = \frac{f_{in}}{pwm_{top} + 1}$
 
 Resulting duty cycle is:
-$f = \frac{pwm\_threshold+1}{pwm\_top+1}$
+$f = \frac{pwm_{threshold}+1}{pwm_{top}+1}$
 
 ## How to test
 
