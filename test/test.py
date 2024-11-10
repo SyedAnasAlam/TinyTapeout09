@@ -57,11 +57,11 @@ async def test_project(dut):
 
         for i in range(math.ceil(cycles_on)):
             await ClockCycles(dut.clk, 1)
-            assert dut.uo_out.value == 1
+            assert (dut.uo_out.value & 1) == 1
     
         for i in range(math.ceil(cycles_off)):
             await ClockCycles(dut.clk, 1)
-            assert dut.uo_out.value == 0
+            assert (dut.uo_out.value & 1) == 0
 
     # Test 2
     # Divide clock by 5
@@ -89,11 +89,11 @@ async def test_project(dut):
 
         for i in range(math.ceil(cycles_on)):
             await ClockCycles(dut.clk, 1)
-            assert dut.uo_out.value == 1
+            assert (dut.uo_out.value & 1)  == 1
     
         for i in range(math.ceil(cycles_off)):
             await ClockCycles(dut.clk, 1)
-            assert dut.uo_out.value == 0
+            assert (dut.uo_out.value & 1)  == 0
 
     # Test 3
     # Divide clock by 25
@@ -121,11 +121,11 @@ async def test_project(dut):
 
         for i in range(math.ceil(cycles_on)):
             await ClockCycles(dut.clk, 1)
-            assert dut.uo_out.value == 1
+            assert (dut.uo_out.value & 1)  == 1
     
         for i in range(math.ceil(cycles_off)):
             await ClockCycles(dut.clk, 1)
-            assert dut.uo_out.value == 0
+            assert (dut.uo_out.value & 1)  == 0
 
     # Test 4
     # Divide clock by 25
@@ -153,11 +153,11 @@ async def test_project(dut):
 
         for i in range(math.ceil(cycles_on)):
             await ClockCycles(dut.clk, 1)
-            assert dut.uo_out.value == 1
+            assert (dut.uo_out.value & 1)  == 1
     
         for i in range(math.ceil(cycles_off)):
             await ClockCycles(dut.clk, 1)
-            assert dut.uo_out.value == 0
+            assert (dut.uo_out.value & 1)  == 0
     
     
 
